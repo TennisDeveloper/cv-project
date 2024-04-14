@@ -55,6 +55,8 @@ function userInformationHTML(user) {
 //otherwise as I type I see the loading image and immediately the request to the github api webpage is sent
 
     function fetchGitHubInformation(event) {
+        $("#gh-user-data").html(""); //empty html space at the beginning of the writing, so that no repos apear
+        $("#gh-repo-data").html(""); 
 
         var username = $("#gh-username").val();
         if (!username) {
@@ -89,3 +91,5 @@ function userInformationHTML(user) {
                 }
             )
     }
+
+    $(document).ready(fetchGitHubInformation); // this will fully load the function where the octocat is ready and repos should be visible

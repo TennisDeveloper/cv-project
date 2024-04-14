@@ -22,11 +22,10 @@ function userInformationHTML(user) {
 
 //3.
 //if there are no repos then I want to get message displayed
-//if repos are there we will get an array and we want to iterate through it. Map function works like for 
-//each and will run against the repo array and pushes the results into the new array
+//if repos are there we will get an array and we want to iterate through it. Map function works like "for each ... do"
+//and will run against the repo array and pushes the results into the new array
 ////the <li> element will list the items with the link and name of repo
- //the above is only array in a parameter, therefore we need to return it on the screen via html. 
- //We use join method on that array which returns it as a string and return everything in a new line
+
 
  function repoInformationHTML(repos) {
     if (repos.length == 0) {
@@ -38,15 +37,16 @@ function userInformationHTML(user) {
                     <a href="${repo.html_url}" target="_blank">${repo.name}</a>
                 </li>`;
     });
-
-    return `<div class="clearfix repo-list">
-                <p>
-                    <strong>Repo List:</strong>
-                </p>
-                <ul>
-                    ${listItemsHTML.join("\n")}
-                </ul>
-            </div>`;
+//the above is only array in a parameter, therefore we need to return it on the screen via html. 
+ //We use join method on that array which returns it as a string and return everything in a new line
+ return `<div class="clearfix repo-list">
+        <p>
+            <strong>Repo List:</strong>
+        </p>
+        <ul>
+            ${listItemsHTML.join("\n")}
+        </ul>
+        </div>`;
 }
 
 //1.

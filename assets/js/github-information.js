@@ -83,6 +83,10 @@ function userInformationHTML(user) {
                 }, function(errorResponse) {                               // error function has to be written in case of error message
                     if (errorResponse.status === 404) {                    //Not found error  
                         $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
+                    } else if (errorResponse.status === 403) {                    // If I am doing too many API requests in a small time to the GITHUB server, I will receive this error- throttling
+                        var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000); //I want to know the date and time until when I need to wait
+                        $("#gh-user-data").html(`<h4>Too many requests, please wait until: ${resetTime.toLocaleTimeString()}</h4>`); // I want to display this info on the screen, the toLocaleTimeString will convert the time to local computer settings
+
                     } else {
                         console.log(errorResponse);
                         $("#gh-user-data").html(`<h2>Error: ${errorResponse.responseJSON.message}</h2>`); //if this is a different error we want to see that in the conso
